@@ -14,15 +14,15 @@ Freestyle {
             }
         }
         
-        stage('Fortify Remote Arguments') {
+        stage('Fortify Local Arguments') {
         steps {
-            fortifyRemoteArguments transOptions: '-Xmx4G',
+            fortifyLocalArguments transOptions: '-Xmx4G',
             scanOptions: '"-analyzers" "controlflow,dataflow"'
             }
         }
-        stage('Fortify Remote Analysis') {
+        stage('Fortify Local Analysis') {
         steps {
-                fortifyRemoteAnalysis remoteAnalysisProjectType: fortifyPHP(),
+                fortifyLocalAnalysis localAnalysisProjectType: fortifyPHP(),
                 uploadSSC: [appName: 'SAST_25', appVersion: 'v25']
                 }
             }
